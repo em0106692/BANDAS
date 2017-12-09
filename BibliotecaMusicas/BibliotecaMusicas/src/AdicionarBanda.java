@@ -80,7 +80,7 @@ public class AdicionarBanda extends javax.swing.JFrame {
 
         jLabel6.setText("Local:");
 
-        jLabel7.setText("Carregar Imagem:");
+        jLabel7.setText("Não Carrega Imagem");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
