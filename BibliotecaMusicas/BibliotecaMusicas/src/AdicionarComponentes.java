@@ -1,12 +1,12 @@
 
-public class AdicionarAlbum extends javax.swing.JFrame {
+public class AdicionarComponentes extends javax.swing.JFrame {
 
-    public AdicionarAlbum() {
+    public AdicionarComponentes() {
         initComponents();
 
     }
 
-    public AdicionarAlbum(BibliotecaMusicas bibli) {
+    public AdicionarComponentes(BibliotecaMusicas bibli) {
         initComponents();
         B = bibli;
     }
