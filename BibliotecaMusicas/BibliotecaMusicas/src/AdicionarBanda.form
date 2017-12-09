@@ -186,7 +186,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
+<<<<<<< HEAD
         <Property name="text" type="java.lang.String" value="&#xe3;o Carrega "/>
+=======
+        <Property name="text" type="java.lang.String" value="Imagem"/>
+>>>>>>> 97c50498681b266441b3e53cc6844136d0565103
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="sNome">
