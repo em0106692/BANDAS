@@ -1,4 +1,3 @@
-
 public class AdicionarBanda extends javax.swing.JFrame {
 
     public AdicionarBanda() {

@@ -20,8 +20,5 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-<<<<<<< HEAD
-/BibliotecaMusicas/BibliotecaMusicas/nbproject/private/
-=======
->>>>>>> 376d53291e95fac0087aef2000a700720f3e67e5
+
 /BibliotecaMusicas/BibliotecaMusicas/build/
