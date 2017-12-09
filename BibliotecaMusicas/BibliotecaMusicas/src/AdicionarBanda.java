@@ -188,13 +188,13 @@ public class AdicionarBanda extends javax.swing.JFrame {
         }
 
         if (error == false) {
-            Livro L = new Livro();
-            L.setTitulo(sTitulo.getText());
-            L.setAutor(sAutor.getText());
-            L.setData(sData.getText());
-            B.AdicionarLivro(L);
+            Bandas L = new Bandas();
+            L.setBAN_VNOME(sTitulo.getText());
+            L.setBAN_VLOCAL(sAutor.getText());
+            L.setBAN_VIMAGEM(sData.getText());
+            B.AdicionarBanda(L);
             
-            B.ExibeLivro(B.RetornaTamanho() -1);
+            B.ExibeBanda(B.RetornaTamanho() -1);
             this.dispose();
         }
     }//GEN-LAST:event_bSalvarActionPerformed

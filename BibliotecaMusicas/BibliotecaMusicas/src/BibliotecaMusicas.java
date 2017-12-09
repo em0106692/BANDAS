@@ -5,25 +5,32 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
 
     public BibliotecaMusicas() {
         initComponents();
-
-//        Livro L = new Livro();
-//        L.setAutor("Eduardo");
-//        Livros.add(L);
     }
 
-    public void AdicionarLivro(Livro L) {
-        Livros.add(L);
+    public void AdicionarBanda(Bandas Ban) {
+        Banda.add(Ban);
+    }
+    
+    public void AdicionarUsuario(Usuarios Usu) {
+        Usuario.add(Usu);
+    }
+    
+    public void AdicionarAlbum(Albuns Alb) {
+        Album.add(Alb);
+    }
+    
+    public void AdicionarMusica(Musicas Mus) {
+        Musica.add(Mus);
     }
 
     public int RetornaTamanho() {
-        return Livros.size();
+        return Banda.size();
     }
 
-    public void ExibeLivro(int i) {
-        sTitulo.setText(Livros.get(i).getTitulo());
-        sAutor.setText(Livros.get(i).getAutor());
-        dData.setText(Livros.get(i).getData());
-        cEmprestado.setSelected(Livros.get(i).isEmprestado());
+    public void ExibeBanda(int i) {
+        sBandaNome.setText(Banda.get(i).getBAN_VNOME());
+        sBandaLocal.setText(Banda.get(i).getBAN_VLOCAL());
+        //lBandaImagem.setIcon(Banda.get(i).getBAN_VIMAGEM());
     }
 
     @SuppressWarnings("unchecked")
@@ -33,10 +40,8 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         bAdd = new javax.swing.JButton();
         bRemove = new javax.swing.JButton();
-        bRegraco2 = new javax.swing.JButton();
         bRegreco = new javax.swing.JButton();
         bAvanco = new javax.swing.JButton();
-        bAvanco2 = new javax.swing.JButton();
         cEmprestado = new javax.swing.JCheckBox();
         sTitulo = new javax.swing.JTextField();
         sAutor = new javax.swing.JTextField();
@@ -49,8 +54,8 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         bAlbumEditar = new javax.swing.JButton();
         bBandaEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
+        tMusicas = new javax.swing.JTable();
+        lBandaImagem = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         bAlbumPrev = new javax.swing.JButton();
         bAlbumNext = new javax.swing.JButton();
@@ -90,13 +95,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
             }
         });
 
-        bRegraco2.setText("<<");
-        bRegraco2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bRegraco2ActionPerformed(evt);
-            }
-        });
-
         bRegreco.setText("<");
         bRegreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,13 +106,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         bAvanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAvancoActionPerformed(evt);
-            }
-        });
-
-        bAvanco2.setText(">>");
-        bAvanco2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAvanco2ActionPerformed(evt);
             }
         });
 
@@ -134,7 +125,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
 
         bBandaEditar.setText("Editar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tMusicas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -161,9 +152,9 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tMusicas);
 
-        jLabel4.setText("Imagem");
+        lBandaImagem.setText("Imagem");
 
         jLabel8.setText("Local:");
 
@@ -214,7 +205,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                         .addGap(0, 55, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lBandaImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -251,7 +242,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                             .addComponent(sBandaLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bBandaExluir))
                         .addGap(0, 60, Short.MAX_VALUE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lBandaImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAlbumEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,13 +292,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                                 .addComponent(cEmprestado)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bRegraco2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(55, 55, 55)
                         .addComponent(bRegreco)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bAvanco)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bAvanco2))
+                        .addGap(55, 55, 55))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(bRemove)
@@ -371,12 +360,8 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                 .addComponent(cEmprestado)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bRegraco2)
-                        .addComponent(bRegreco))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bAvanco)
-                        .addComponent(bAvanco2)))
+                    .addComponent(bRegreco)
+                    .addComponent(bAvanco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bRemove)
@@ -394,30 +379,16 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     private void bRegrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegrecoActionPerformed
         int indice = RetornaTamanho() - 1;
         if (indice >= 0) {
-            ExibeLivro(indice - 1);
+            ExibeBanda(indice - 1);
         }
     }//GEN-LAST:event_bRegrecoActionPerformed
-
-    private void bRegraco2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegraco2ActionPerformed
-        int indice = RetornaTamanho() - 1;
-        if (indice >= 0) {
-            ExibeLivro(indice);
-        }
-    }//GEN-LAST:event_bRegraco2ActionPerformed
 
     private void bAvancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAvancoActionPerformed
         int indice = RetornaTamanho() - 1;
         if (indice <= RetornaTamanho() - 1) {
-            ExibeLivro(indice + 1);
+            ExibeBanda(indice + 1);
         }
     }//GEN-LAST:event_bAvancoActionPerformed
-
-    private void bAvanco2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAvanco2ActionPerformed
-        int indice = RetornaTamanho() - 1;
-        if (indice <= RetornaTamanho() - 1) {
-            ExibeLivro(indice);
-        }
-    }//GEN-LAST:event_bAvanco2ActionPerformed
 
     private void bAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddActionPerformed
         AdicionarBanda AddL = new AdicionarBanda(this);
@@ -439,7 +410,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     private javax.swing.JButton bAlbumNext;
     private javax.swing.JButton bAlbumPrev;
     private javax.swing.JButton bAvanco;
-    private javax.swing.JButton bAvanco2;
     private javax.swing.JButton bBandaComponentes;
     private javax.swing.JButton bBandaEditar;
     private javax.swing.JButton bBandaExluir;
@@ -447,7 +417,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     private javax.swing.JButton bMusicaEditar;
     private javax.swing.JButton bMusicaExcluir;
     private javax.swing.JButton bMusicaNova;
-    private javax.swing.JButton bRegraco2;
     private javax.swing.JButton bRegreco;
     private javax.swing.JButton bRemove;
     private javax.swing.JCheckBox cEmprestado;
@@ -456,22 +425,25 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lBandaImagem;
     private javax.swing.JTextField sAutor;
     private javax.swing.JTextField sBandaAlbum;
     private javax.swing.JTextField sBandaLocal;
     private javax.swing.JTextField sBandaNome;
     private javax.swing.JTextField sTitulo;
+    private javax.swing.JTable tMusicas;
     // End of variables declaration//GEN-END:variables
 
-    ArrayList<Livro> Livros = new ArrayList<>();
+    ArrayList<Bandas> Banda = new ArrayList<>();
+    ArrayList<Albuns> Album = new ArrayList<>();
+    ArrayList<Usuarios> Usuario = new ArrayList<>();
+    ArrayList<Musicas> Musica = new ArrayList<>();
 }
