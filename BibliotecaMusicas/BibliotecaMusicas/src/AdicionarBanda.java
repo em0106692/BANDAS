@@ -19,28 +19,16 @@ public class AdicionarBanda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         bCancelar = new javax.swing.JButton();
         bSalvar = new javax.swing.JButton();
-        sTitulo = new javax.swing.JFormattedTextField();
-        sAutor = new javax.swing.JFormattedTextField();
-        sData = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        sNome = new javax.swing.JTextField();
-        sLocal = new javax.swing.JTextField();
+        sBandaNome = new javax.swing.JTextField();
+        sBandaLocal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel2.setText("Título");
-
-        jLabel3.setText("Autor");
-
-        jLabel4.setText("Data");
 
         bCancelar.setText("Cancelar");
         bCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -53,24 +41,6 @@ public class AdicionarBanda extends javax.swing.JFrame {
         bSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSalvarActionPerformed(evt);
-            }
-        });
-
-        sTitulo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sTituloMouseClicked(evt);
-            }
-        });
-
-        sAutor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sAutorMouseClicked(evt);
-            }
-        });
-
-        sData.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sDataMouseClicked(evt);
             }
         });
 
@@ -92,23 +62,14 @@ public class AdicionarBanda extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(bCancelar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
-                                        .addComponent(bSalvar))
-                                    .addComponent(sTitulo)
-                                    .addComponent(sAutor, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(sData, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addGap(31, 31, 31)
+                                .addComponent(bCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
+                                .addComponent(bSalvar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(sNome))))
+                                .addComponent(sBandaNome))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -120,7 +81,7 @@ public class AdicionarBanda extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(sLocal)))
+                        .addComponent(sBandaLocal)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -135,26 +96,14 @@ public class AdicionarBanda extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(sNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sBandaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(sLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sBandaLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(sTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(sAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(sData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(bCancelar)
                     .addComponent(bSalvar))
@@ -166,56 +115,38 @@ public class AdicionarBanda extends javax.swing.JFrame {
 
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        sTitulo.setText("");
-        sAutor.setText("");
-        sData.setText("");
+        sBandaNome.setText("");
+        sBandaLocal.setText("");
+        //sBandaImagem.setText("");
         dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
 
-        if ("".equals(sTitulo.getText())) {
-            sTitulo.setText(msgError);
+        if ("".equals(sBandaNome.getText())) {
+            sBandaNome.setText(msgError);
             error = true;
         }
-        if ("".equals(sAutor.getText())) {
-            sAutor.setText(msgError);
+        if ("".equals(sBandaLocal.getText())) {
+            sBandaLocal.setText(msgError);
             error = true;
         }
-        if ("".equals(sData.getText())) {
-            sData.setText(msgError);
-            error = true;
-        }
+//        if ("".equals(sBandaLocal.getText())) {
+//            sBandaImagem.setText(msgError);
+//            error = true;
+//        }
 
         if (error == false) {
             Bandas L = new Bandas();
-            L.setBAN_VNOME(sTitulo.getText());
-            L.setBAN_VLOCAL(sAutor.getText());
-            L.setBAN_VIMAGEM(sData.getText());
+            L.setBAN_VNOME(sBandaNome.getText());
+            L.setBAN_VLOCAL(sBandaLocal.getText());
+            //L.setBAN_VIMAGEM(sBandaImagem.getText());
             B.AdicionarBanda(L);
             
-            B.ExibeBanda(B.RetornaTamanho() -1);
+            B.ExibeBanda(B.BandaTamanho() -1);
             this.dispose();
         }
     }//GEN-LAST:event_bSalvarActionPerformed
-
-    private void sTituloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sTituloMouseClicked
-        if (!"".equals(sTitulo.getText())) {
-            sTitulo.setText("");
-        }
-    }//GEN-LAST:event_sTituloMouseClicked
-
-    private void sAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sAutorMouseClicked
-        if (!"".equals(sAutor.getText())) {
-            sTitulo.setText("");
-        }
-    }//GEN-LAST:event_sAutorMouseClicked
-
-    private void sDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sDataMouseClicked
-        if (!"".equals(sData.getText())) {
-            sTitulo.setText("");
-        }
-    }//GEN-LAST:event_sDataMouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -229,17 +160,11 @@ public class AdicionarBanda extends javax.swing.JFrame {
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bSalvar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JFormattedTextField sAutor;
-    private javax.swing.JFormattedTextField sData;
-    private javax.swing.JTextField sLocal;
-    private javax.swing.JTextField sNome;
-    private javax.swing.JFormattedTextField sTitulo;
+    private javax.swing.JTextField sBandaLocal;
+    private javax.swing.JTextField sBandaNome;
     // End of variables declaration//GEN-END:variables
 
     BibliotecaMusicas B;
