@@ -2,7 +2,16 @@ public class Usuarios {
 
     private int USU_ID;
     private String USU_VNOME;
+    private String USU_VIMAGE;
     private int USU_BAN_ID;
+
+    public String getUSU_VIMAGE() {
+        return USU_VIMAGE;
+    }
+
+    public void setUSU_VIMAGE(String USU_VIMAGE) {
+        this.USU_VIMAGE = USU_VIMAGE;
+    }
 
     public int getUSU_ID() {
         return USU_ID;
