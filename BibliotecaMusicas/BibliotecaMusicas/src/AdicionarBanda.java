@@ -1,4 +1,9 @@
 
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+
+
 public class AdicionarBanda extends javax.swing.JFrame {
 
     public AdicionarBanda() {
@@ -27,6 +32,8 @@ public class AdicionarBanda extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         sBandaNome = new javax.swing.JTextField();
         sBandaLocal = new javax.swing.JTextField();
+        jbAbreImagem = new javax.swing.JButton();
+        jspImagemBanda = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,6 +59,25 @@ public class AdicionarBanda extends javax.swing.JFrame {
 
         jLabel7.setText("Carregar Imagem:");
 
+        sBandaNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sBandaNomeMouseClicked(evt);
+            }
+        });
+
+        sBandaLocal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sBandaLocalMouseClicked(evt);
+            }
+        });
+
+        jbAbreImagem.setText("Escolher Imagem");
+        jbAbreImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAbreImagemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,7 +90,7 @@ public class AdicionarBanda extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addComponent(bCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                                 .addComponent(bSalvar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
@@ -73,19 +99,25 @@ public class AdicionarBanda extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel6)
-                        .addGap(0, 282, Short.MAX_VALUE))
+                        .addGap(0, 319, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(sBandaLocal)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(120, 120, 120))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbAbreImagem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jspImagemBanda, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,11 +134,18 @@ public class AdicionarBanda extends javax.swing.JFrame {
                     .addComponent(sBandaLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bCancelar)
-                    .addComponent(bSalvar))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbAbreImagem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bCancelar)
+                            .addComponent(bSalvar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jspImagemBanda, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 43, Short.MAX_VALUE)))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -148,6 +187,33 @@ public class AdicionarBanda extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bSalvarActionPerformed
 
+    private void sBandaNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sBandaNomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sBandaNomeMouseClicked
+
+    private void sBandaLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sBandaLocalMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sBandaLocalMouseClicked
+JLabel jlab = new JLabel();
+    private void jbAbreImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAbreImagemActionPerformed
+        JFileChooser jfc = new JFileChooser();
+
+        //select file and display
+        if (jfc.showOpenDialog(jbAbreImagem) == JFileChooser.APPROVE_OPTION) {
+            //get selected file name [i.e., complete file path]
+            java.io.File f = jfc.getSelectedFile();
+
+            //set icon
+            jlab.setIcon(new ImageIcon(f.toString()));
+
+            //alignment
+            jlab.setHorizontalAlignment(JLabel.CENTER);
+
+            //add jLabel to scroll pane
+            jspImagemBanda.getViewport().add(jlab);
+        }
+    }//GEN-LAST:event_jbAbreImagemActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -163,6 +229,8 @@ public class AdicionarBanda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton jbAbreImagem;
+    private javax.swing.JScrollPane jspImagemBanda;
     private javax.swing.JTextField sBandaLocal;
     private javax.swing.JTextField sBandaNome;
     // End of variables declaration//GEN-END:variables

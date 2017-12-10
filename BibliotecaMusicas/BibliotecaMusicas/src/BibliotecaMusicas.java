@@ -169,6 +169,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         bMusicaNova.setText("Nova Musica");
 
         bBandaComponentes.setText("Ver Componentes da Banda");
+        bBandaComponentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBandaComponentesActionPerformed(evt);
+            }
+        });
 
         bAlbumAdicionar.setText("Adicionar Álbum");
         bAlbumAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -388,6 +393,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         AdicionarAlbum AddAlbum = new AdicionarAlbum(this);
         AddAlbum.setVisible(true);
     }//GEN-LAST:event_bAlbumAdicionarActionPerformed
+
+    private void bBandaComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaComponentesActionPerformed
+        AdicionarComponentes AddUsu = new AdicionarComponentes(this);
+        AddUsu.setVisible(true);
+    }//GEN-LAST:event_bBandaComponentesActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
