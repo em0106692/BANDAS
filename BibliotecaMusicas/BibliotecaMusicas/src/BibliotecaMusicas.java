@@ -1,32 +1,35 @@
 
 import java.util.ArrayList;
+//import javax.swing.ImageIcon;
+//import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 public class BibliotecaMusicas extends javax.swing.JFrame {
 
+    JLabel jlab = new JLabel();
+
     public BibliotecaMusicas() {
         initComponents();
+        //this.setExtendedState(MAXIMIZED_BOTH);
     }
-    
-    public void RemoveBanda(int indice){
-        Banda.remove(indice);
+
+    public void RemoveBanda(int i) {
+        Banda.remove(Banda.get(i));
+        System.out.println(Banda);
     }
-    
+
     public void AdicionarBanda(Bandas Ban) {
         Banda.add(Ban);
     }
-    
+
     public void AdicionarUsuario(Usuarios Usu) {
         Usuario.add(Usu);
     }
-    
+
     public void AdicionarAlbum(Albuns Alb) {
         Album.add(Alb);
     }
-    
-    public int RetornaTamanhoAlbum() {
-        return Album.size();
-    }
-    
+
     public void AdicionarMusica(Musicas Mus) {
         Musica.add(Mus);
     }
@@ -34,15 +37,15 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     public int BandaTamanho() {
         return Banda.size();
     }
-    
+
     public int UsuarioTamanho() {
         return Usuario.size();
     }
-    
+
     public int AlbumTamanho() {
         return Album.size();
     }
-    
+
     public int MusicaTamanho() {
         return Musica.size();
     }
@@ -50,27 +53,27 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     public void ExibeBanda(int i) {
         sBandaNome.setText(Banda.get(i).getBAN_VNOME());
         sBandaLocal.setText(Banda.get(i).getBAN_VLOCAL());
-        //lBandaImagem.setIcon(Banda.get(i).getBAN_VIMAGEM());
+        //TrazImagemBanda(Banda.get(i).getBAN_ID());
+        INDICE = i;
+        ID_BANDA_ATUAL = Banda.get(i).getBAN_ID();
+        System.out.println(Banda);
     }
-    
+
     public void ExibeAlbum(int i) {
         sBandaAlbum.setText(Album.get(i).getALB_VNOME());
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        bRemove = new javax.swing.JButton();
-        bRegreco = new javax.swing.JButton();
-        bAvanco = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         bAlbumEditar = new javax.swing.JButton();
         bBandaEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tMusicas = new javax.swing.JTable();
-        lBandaImagem = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         bAlbumPrev = new javax.swing.JButton();
         bAlbumNext = new javax.swing.JButton();
@@ -84,6 +87,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         sBandaAlbum = new javax.swing.JTextField();
         bAlbumExcluir = new javax.swing.JButton();
         bBandaExluir = new javax.swing.JButton();
+        lBandaImagem = new javax.swing.JScrollPane();
         bBandaPrev = new javax.swing.JButton();
         bBandaAvanco = new javax.swing.JToggleButton();
         bBandaNova = new javax.swing.JButton();
@@ -96,27 +100,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Acervo de Músicas");
 
-        bRemove.setText("-");
-        bRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bRemoveActionPerformed(evt);
-            }
-        });
-
-        bRegreco.setText("<");
-        bRegreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bRegrecoActionPerformed(evt);
-            }
-        });
-
-        bAvanco.setText(">");
-        bAvanco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAvancoActionPerformed(evt);
-            }
-        });
-
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setText("Banda:");
@@ -124,6 +107,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         bAlbumEditar.setText("Editar");
 
         bBandaEditar.setText("Editar");
+        bBandaEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBandaEditarActionPerformed(evt);
+            }
+        });
 
         tMusicas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,8 +142,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tMusicas);
 
-        lBandaImagem.setText("Imagem");
-
         jLabel8.setText("Local:");
 
         bAlbumPrev.setText("<");
@@ -182,9 +168,20 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
             }
         });
 
+        sBandaAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sBandaAlbumActionPerformed(evt);
+            }
+        });
+
         bAlbumExcluir.setText("Excluir");
 
         bBandaExluir.setText("Excluir");
+        bBandaExluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBandaExluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -215,7 +212,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                         .addGap(0, 55, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lBandaImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lBandaImagem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -232,15 +229,15 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                                 .addComponent(bBandaEditar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bBandaComponentes))
-                            .addComponent(bBandaExluir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(bBandaExluir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bBandaEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sBandaNome)
@@ -252,9 +249,10 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(sBandaLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bBandaExluir))
-                        .addGap(60, 60, 60))
-                    .addComponent(lBandaImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(66, 66, 66))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lBandaImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAlbumEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bAlbumPrev)
@@ -297,36 +295,24 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(14, 14, 14)
+                .addComponent(bBandaPrev)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(bRegreco)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bAvanco)
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bRemove)
-                        .addGap(612, 612, 612))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(bBandaPrev)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton12))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bBandaNova)))
-                                .addGap(11, 11, 11)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bBandaAvanco)))
+                                .addComponent(jTextField4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bBandaNova)))
+                        .addGap(11, 11, 11)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bBandaAvanco)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -350,35 +336,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(bBandaAvanco)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bRegreco)
-                    .addComponent(bAvanco))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bRemove)
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRemoveActionPerformed
-        RemoveBanda(indiceRemove);
-    }//GEN-LAST:event_bRemoveActionPerformed
-
-    private void bRegrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegrecoActionPerformed
-        int indice = BandaTamanho() - 1;
-        if (indice >= 0) {
-            ExibeBanda(indice - 1);
-        }
-    }//GEN-LAST:event_bRegrecoActionPerformed
-
-    private void bAvancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAvancoActionPerformed
-        int indice = BandaTamanho() - 1;
-        if (indice <= BandaTamanho() - 1) {
-            ExibeBanda(indice + 1);
-        }
-    }//GEN-LAST:event_bAvancoActionPerformed
 
     private void bBandaNovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaNovaActionPerformed
         AdicionarBanda AddB = new AdicionarBanda(this);
@@ -399,6 +361,21 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         AddUsu.setVisible(true);
     }//GEN-LAST:event_bBandaComponentesActionPerformed
 
+    private void bBandaExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaExluirActionPerformed
+        if (INDICE != -1) {
+            RemoveBanda(INDICE);
+        }
+    }//GEN-LAST:event_bBandaExluirActionPerformed
+
+    private void sBandaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBandaAlbumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sBandaAlbumActionPerformed
+
+    private void bBandaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaEditarActionPerformed
+        AdicionarBanda AddB = new AdicionarBanda(this, INDICE);
+        AddB.setVisible(true);
+    }//GEN-LAST:event_bBandaEditarActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -406,13 +383,27 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
             }
         });
     }
+
+//    public void TrazImagemBanda (int ID_BANDA) {                                             
+//        JFileChooser jfc = new JFileChooser();
+//            java.io.File ff = jfc.getSelectedFile();
+//            String f = ff.toString();
+//            f = Banda.get(ID_BANDA).getBAN_VIMAGEM();
+//            //set icon
+//            jlab.setIcon(new ImageIcon(f));
+//
+//            //alignment
+//            jlab.setHorizontalAlignment(JLabel.CENTER);
+//
+//            //add jLabel to scroll pane
+//            lBandaImagem.getViewport().add(jlab);
+//    }         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAlbumAdicionar;
     private javax.swing.JButton bAlbumEditar;
     private javax.swing.JButton bAlbumExcluir;
     private javax.swing.JButton bAlbumNext;
     private javax.swing.JButton bAlbumPrev;
-    private javax.swing.JButton bAvanco;
     private javax.swing.JToggleButton bBandaAvanco;
     private javax.swing.JButton bBandaComponentes;
     private javax.swing.JButton bBandaEditar;
@@ -422,8 +413,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     private javax.swing.JButton bMusicaEditar;
     private javax.swing.JButton bMusicaExcluir;
     private javax.swing.JButton bMusicaNova;
-    private javax.swing.JButton bRegreco;
-    private javax.swing.JButton bRemove;
     private javax.swing.JButton jButton12;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -431,12 +420,19 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JLabel lBandaImagem;
+    private javax.swing.JScrollPane lBandaImagem;
     private javax.swing.JTextField sBandaAlbum;
     private javax.swing.JTextField sBandaLocal;
     private javax.swing.JTextField sBandaNome;
     private javax.swing.JTable tMusicas;
     // End of variables declaration//GEN-END:variables
+
+    int ID_BANDA_ATUAL = -1;
+    int ID_ALBUM_ATUAL = 0;
+    int ID_MUSICA_ATUAL = 0;
+
+    int INDICE = -1;
+    
     int indiceRemove = 0;
     ArrayList<Bandas> Banda = new ArrayList<>();
     ArrayList<Albuns> Album = new ArrayList<>();

@@ -3,17 +3,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
-
 public class AdicionarBanda extends javax.swing.JFrame {
 
     public AdicionarBanda() {
         initComponents();
-
     }
 
     public AdicionarBanda(BibliotecaMusicas bibli) {
         initComponents();
         B = bibli;
+    }
+
+    public AdicionarBanda(BibliotecaMusicas bibli, int i) {
+        initComponents();
+        BEDITAR = bibli;
+        EDIT = true;
+        sBandaNome.setText(BEDITAR.getName());
+        //sBandaLocal.setText(BEDITAR);
     }
 
     public void Cadastro(BibliotecaMusicas Bibli) {
@@ -160,31 +166,30 @@ public class AdicionarBanda extends javax.swing.JFrame {
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+        if (EDIT != true) {
+            if ("".equals(sBandaNome.getText())) {
+                sBandaNome.setText(msgError);
+                error = true;
+            }
+            if ("".equals(sBandaLocal.getText())) {
+                sBandaLocal.setText(msgError);
+                error = true;
+            }
 
-        if ("".equals(sBandaNome.getText())) {
-            sBandaNome.setText(msgError);
-            error = true;
-        }
-        if ("".equals(sBandaLocal.getText())) {
-            sBandaLocal.setText(msgError);
-            error = true;
-        }
-//        if ("".equals(sBandaLocal.getText())) {
-//            sBandaImagem.setText(msgError);
-//            error = true;
-//        }
+            if (error == false) {
+                Bandas L = new Bandas();
+                L.setBAN_ID(B.BandaTamanho());
+                L.setBAN_VNOME(sBandaNome.getText());
+                L.setBAN_VLOCAL(sBandaLocal.getText());
 
-        if (error == false) {
-            Bandas L = new Bandas();
-            L.setBAN_ID(B.BandaTamanho() + 1);
-            L.setBAN_VNOME(sBandaNome.getText());
-            L.setBAN_VLOCAL(sBandaLocal.getText());
-            //L.setBAN_VIMAGEM(sBandaImagem.getText());
-            B.AdicionarBanda(L);
-            
-            B.ExibeBanda(B.BandaTamanho() -1);
-            this.dispose();
+                B.AdicionarBanda(L);
+
+                B.ExibeBanda(B.BandaTamanho() - 1);
+                //B.RemoveBanda(B.BandaTamanho());
+                this.dispose();
+            }
         }
+        
     }//GEN-LAST:event_bSalvarActionPerformed
 
     private void sBandaNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sBandaNomeMouseClicked
@@ -194,7 +199,7 @@ public class AdicionarBanda extends javax.swing.JFrame {
     private void sBandaLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sBandaLocalMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_sBandaLocalMouseClicked
-JLabel jlab = new JLabel();
+    JLabel jlab = new JLabel();
     private void jbAbreImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAbreImagemActionPerformed
         JFileChooser jfc = new JFileChooser();
 
@@ -211,6 +216,9 @@ JLabel jlab = new JLabel();
 
             //add jLabel to scroll pane
             jspImagemBanda.getViewport().add(jlab);
+
+//            Bandas L = new Bandas();
+//            L.setBAN_VIMAGEM(f.toString());
         }
     }//GEN-LAST:event_jbAbreImagemActionPerformed
 
@@ -235,6 +243,8 @@ JLabel jlab = new JLabel();
     private javax.swing.JTextField sBandaNome;
     // End of variables declaration//GEN-END:variables
 
+    boolean EDIT = false;
+    BibliotecaMusicas BEDITAR;
     BibliotecaMusicas B;
     boolean error = false;
     String msgError = "Este campo é obrigatório";
