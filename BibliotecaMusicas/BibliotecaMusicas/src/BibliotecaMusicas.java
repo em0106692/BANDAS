@@ -6,7 +6,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     public BibliotecaMusicas() {
         initComponents();
     }
-
+    
+    public void RemoveBanda(int indice){
+        Banda.remove(indice);
+    }
+    
     public void AdicionarBanda(Bandas Ban) {
         Banda.add(Ban);
     }
@@ -17,6 +21,10 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     
     public void AdicionarAlbum(Albuns Alb) {
         Album.add(Alb);
+    }
+    
+    public int RetornaTamanhoAlbum() {
+        return Album.size();
     }
     
     public void AdicionarMusica(Musicas Mus) {
@@ -44,7 +52,10 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         sBandaLocal.setText(Banda.get(i).getBAN_VLOCAL());
         //lBandaImagem.setIcon(Banda.get(i).getBAN_VIMAGEM());
     }
-
+    
+    public void ExibeAlbum(int i) {
+        sBandaAlbum.setText(Album.get(i).getALB_VNOME());
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -160,6 +171,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         bBandaComponentes.setText("Ver Componentes da Banda");
 
         bAlbumAdicionar.setText("Adicionar Álbum");
+        bAlbumAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAlbumAdicionarActionPerformed(evt);
+            }
+        });
 
         bAlbumExcluir.setText("Excluir");
 
@@ -220,11 +236,12 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(bBandaComponentes)
-                            .addComponent(bBandaEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sBandaNome))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bBandaEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sBandaNome)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(bBandaComponentes)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -341,7 +358,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRemoveActionPerformed
-
+        RemoveBanda(indiceRemove);
     }//GEN-LAST:event_bRemoveActionPerformed
 
     private void bRegrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegrecoActionPerformed
@@ -366,6 +383,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     private void bBandaPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaPrevActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bBandaPrevActionPerformed
+
+    private void bAlbumAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumAdicionarActionPerformed
+        AdicionarAlbum AddAlbum = new AdicionarAlbum(this);
+        AddAlbum.setVisible(true);
+    }//GEN-LAST:event_bAlbumAdicionarActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -405,7 +427,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     private javax.swing.JTextField sBandaNome;
     private javax.swing.JTable tMusicas;
     // End of variables declaration//GEN-END:variables
-
+    int indiceRemove = 0;
     ArrayList<Bandas> Banda = new ArrayList<>();
     ArrayList<Albuns> Album = new ArrayList<>();
     ArrayList<Usuarios> Usuario = new ArrayList<>();
