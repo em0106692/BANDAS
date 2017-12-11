@@ -8,9 +8,10 @@ public class AdicionarAlbum extends javax.swing.JFrame {
         jtAlbum.setModel(tableModel);
     }
 
-    public AdicionarAlbum(BibliotecaMusicas bibli) {
+    public AdicionarAlbum(BibliotecaMusicas bibli, int ID) {
         initComponents();
         B = bibli;
+        ID_BANDA_ATUAL = ID;
     }
 
     public void Cadastro(BibliotecaMusicas Bibli) {
@@ -97,9 +98,9 @@ public class AdicionarAlbum extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sMusicaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -114,18 +115,19 @@ public class AdicionarAlbum extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sNomeAlbum))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbSalvarBanda)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sNomeAlbum))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jbCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbSalvarBanda)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,8 +143,7 @@ public class AdicionarAlbum extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvarBanda)
-                    .addComponent(jbCancelar))
-                .addContainerGap())
+                    .addComponent(jbCancelar)))
         );
 
         pack();
@@ -158,6 +159,7 @@ public class AdicionarAlbum extends javax.swing.JFrame {
             idAlbum = B.AlbumTamanho();
             AL.setALB_ID(idAlbum);
             AL.setALB_VNOME(sNomeAlbum.getText());
+            AL.setALB_BAN_ID(ID_BANDA_ATUAL);
             B.AdicionarAlbum(AL);
             tableModel.addrow(AL);
             
@@ -205,6 +207,11 @@ public class AdicionarAlbum extends javax.swing.JFrame {
     
     int idAlbum = 0;
     BibliotecaMusicas B;
+    
+    int ID_BANDA_ATUAL = -1;
+    int ID_ALBUM_ATUAL = -1;
+    int ID_MUSICA_ATUAL = -1;
+    
     boolean error = false;
     String msgError = "Este campo é obrigatório";
 }
