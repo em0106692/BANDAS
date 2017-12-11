@@ -16,6 +16,15 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     public void RemoveBanda(int i) {
         Banda.remove(Banda.get(i));
         System.out.println(Banda);
+
+        int sizebanda = BandaTamanho();
+
+        if (sizebanda <= 0) {
+            sBandaNome.setText("");
+            sBandaLocal.setText("");
+        } else {
+            ExibeBanda(0);
+        }
     }
 
     public void AdicionarBanda(Bandas Ban) {
@@ -432,7 +441,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     int ID_MUSICA_ATUAL = 0;
 
     int INDICE = -1;
-    
+
     int indiceRemove = 0;
     ArrayList<Bandas> Banda = new ArrayList<>();
     ArrayList<Albuns> Album = new ArrayList<>();
