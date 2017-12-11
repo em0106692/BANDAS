@@ -314,6 +314,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Nova Musica"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bMusicaNovaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bBandaComponentes">
           <Properties>
@@ -371,6 +374,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bBandaAvancoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bBandaNova">
       <Properties>

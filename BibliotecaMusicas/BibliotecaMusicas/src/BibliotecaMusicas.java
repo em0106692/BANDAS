@@ -3,6 +3,7 @@ import java.util.ArrayList;
 //import javax.swing.ImageIcon;
 //import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class BibliotecaMusicas extends javax.swing.JFrame {
 
@@ -162,6 +163,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         bMusicaEditar.setText("Editar");
 
         bMusicaNova.setText("Nova Musica");
+        bMusicaNova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMusicaNovaActionPerformed(evt);
+            }
+        });
 
         bBandaComponentes.setText("Ver Componentes da Banda");
         bBandaComponentes.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +293,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         });
 
         bBandaAvanco.setText(">");
+        bBandaAvanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBandaAvancoActionPerformed(evt);
+            }
+        });
 
         bBandaNova.setText("Nova Banda");
         bBandaNova.addActionListener(new java.awt.event.ActionListener() {
@@ -357,12 +368,23 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }//GEN-LAST:event_bBandaNovaActionPerformed
 
     private void bBandaPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaPrevActionPerformed
-        // TODO add your handling code here:
+        int newIndice = INDICE - 1;
+        if (INDICE >= 0) {
+            ExibeBanda(INDICE - 1);
+        }
+        
+        if (newIndice - 1 < 0) {
+            bBandaPrev.hide();
+        }
     }//GEN-LAST:event_bBandaPrevActionPerformed
 
     private void bAlbumAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumAdicionarActionPerformed
-        AdicionarAlbum AddAlbum = new AdicionarAlbum(this);
-        AddAlbum.setVisible(true);
+        if (!"".equals(sBandaNome.getText())) {
+            AdicionarAlbum AddAlbum = new AdicionarAlbum(this);
+            AddAlbum.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Cadastre uma banda primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_bAlbumAdicionarActionPerformed
 
     private void bBandaComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaComponentesActionPerformed
@@ -384,6 +406,28 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         AdicionarBanda AddB = new AdicionarBanda(this, INDICE);
         AddB.setVisible(true);
     }//GEN-LAST:event_bBandaEditarActionPerformed
+
+    private void bMusicaNovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMusicaNovaActionPerformed
+        if (!"".equals(sBandaNome.getText())) {
+            AdicionarAlbum AddAlbum = new AdicionarAlbum(this);
+            AddAlbum.setVisible(true);
+        } else if ("".equals(sBandaNome.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira uma Banda primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (!"".equals(sBandaAlbum.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira uma Álbum primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bMusicaNovaActionPerformed
+
+    private void bBandaAvancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaAvancoActionPerformed
+        int newIndice = INDICE + 1;
+        if (INDICE <= BandaTamanho()) {
+            ExibeBanda(newIndice);
+        }
+
+        if (newIndice + 1 == BandaTamanho()) {
+            bBandaAvanco.hide();
+        }
+    }//GEN-LAST:event_bBandaAvancoActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
