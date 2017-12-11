@@ -80,6 +80,10 @@ public class TableModelMusica extends AbstractTableModel {
     public void removerow(int row) {
         this.dados.remove(row);
         this.fireTableRowsDeleted(row, row);
+    }      
 
-    }          
+//    public void setNumRows(int row) {
+//        this.dados.set(row, dados.get(row));
+//        this.fireTableRowsDeleted(row, row);
+//    } 
 }

@@ -8,10 +8,12 @@ import javax.swing.JOptionPane;
 public class BibliotecaMusicas extends javax.swing.JFrame {
 
     JLabel jlab = new JLabel();
+    TableModelMusica tableModel = new TableModelMusica();
 
     public BibliotecaMusicas() {
         initComponents();
-        //this.setExtendedState(MAXIMIZED_BOTH);
+        tMusicas.setModel(tableModel);
+//this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     public void RemoveBanda(int i) {
@@ -63,7 +65,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     public void ExibeBanda(int i) {
         sBandaNome.setText(Banda.get(i).getBAN_VNOME());
         sBandaLocal.setText(Banda.get(i).getBAN_VLOCAL());
-        //TrazImagemBanda(Banda.get(i).getBAN_ID());
         INDICE = i;
         ID_BANDA_ATUAL = Banda.get(i).getBAN_ID();
         System.out.println(Banda);
@@ -72,6 +73,26 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     public void ExibeAlbum(int i) {
         sBandaAlbum.setText(Album.get(i).getALB_VNOME());
         System.out.println(Album);
+
+        INDICEALB = i;
+        int TM = MusicaTamanho() - 1;
+        for (int j = 0; j < TM; j++) {
+            Musica.get(j).getMUS_ALB_ID();
+        }
+
+    }
+
+    public void ExibeMusica(int i) {
+        Musicas M = (Musica.get(i));
+
+        M.getMUS_ID();
+
+        tableModel.addrow(M);
+        //TrazImagemBanda(Banda.get(i).getBAN_ID());
+        //INDICE = i;
+        ID_BANDA_ATUAL = Banda.get(i).getBAN_ID();
+
+        System.out.println(Banda);
     }
 
     @SuppressWarnings("unchecked")
@@ -124,38 +145,17 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
             }
         });
 
-        tMusicas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Nº", "Nome", "Cifra", "Letra", "Player"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        tMusicas.setModel(tableModel);
         jScrollPane1.setViewportView(tMusicas);
 
         jLabel8.setText("Local:");
 
         bAlbumPrev.setText("<");
+        bAlbumPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAlbumPrevActionPerformed(evt);
+            }
+        });
 
         bAlbumNext.setText(">");
 
@@ -244,8 +244,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bBandaEditar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bBandaExluir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(bBandaExluir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -330,7 +329,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(bBandaNova)))
                         .addGap(11, 11, 11)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bBandaAvanco)
                 .addContainerGap())
         );
@@ -367,13 +366,18 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }//GEN-LAST:event_bBandaNovaActionPerformed
 
     private void bBandaPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaPrevActionPerformed
+//        if (INDICE < BandaTamanho() - 1) {
+//            INDICE--;
+//            ExibeBanda(INDICE);
+//        }
+
         int newIndice = INDICE - 1;
-        if (INDICE >= 0) {
-            ExibeBanda(INDICE - 1);
+        if (newIndice >= 0) {
+            ExibeBanda(newIndice);
         }
-        
+
         if (newIndice - 1 < 0) {
-            bBandaPrev.hide();
+            bBandaPrev.disable();
         }
     }//GEN-LAST:event_bBandaPrevActionPerformed
 
@@ -384,16 +388,18 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Cadastre uma banda primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
+
+        sBandaAlbum.setText("");
     }//GEN-LAST:event_bAlbumAdicionarActionPerformed
 
     private void bBandaComponentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaComponentesActionPerformed
-        if(!"".equals(sBandaNome.getText())){
-        AdicionarComponentes AddUsu = new AdicionarComponentes(this, ID_BANDA_ATUAL);
-        AddUsu.setVisible(true);
-        } else{
+        if (!"".equals(sBandaNome.getText())) {
+            AdicionarComponentes AddUsu = new AdicionarComponentes(this, ID_BANDA_ATUAL);
+            AddUsu.setVisible(true);
+        } else {
             JOptionPane.showMessageDialog(null, "Insira uma Banda primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_bBandaComponentesActionPerformed
 
     private void bBandaExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaExluirActionPerformed
@@ -423,15 +429,31 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }//GEN-LAST:event_bMusicaNovaActionPerformed
 
     private void bBandaAvancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaAvancoActionPerformed
+//        if (INDICE < BandaTamanho() - 1) {
+//            INDICE++;
+//            ExibeBanda(INDICE);
+//        }
+
         int newIndice = INDICE + 1;
-        if (INDICE <= BandaTamanho()) {
+        if (newIndice <= BandaTamanho() - 1) {
             ExibeBanda(newIndice);
         }
 
-        if (newIndice + 1 == BandaTamanho()) {
-            bBandaAvanco.hide();
+        if (newIndice + 1 > BandaTamanho() - 1) {
+            bBandaAvanco.disable();
         }
     }//GEN-LAST:event_bBandaAvancoActionPerformed
+
+    private void bAlbumPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumPrevActionPerformed
+//        int newIndice = INDICEALB - 1;
+//        if (INDICEALB <= BandaTamanho()) {
+//            ExibeBanda(newIndice);
+//        }
+//
+//        if (newIndice + 1 == BandaTamanho()) {
+//            bBandaAvanco.hide();
+//        }
+    }//GEN-LAST:event_bAlbumPrevActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -489,6 +511,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     int ID_MUSICA_ATUAL = -1;
 
     int INDICE = -1;
+    int INDICEALB = -1;
 
     int indiceRemove = 0;
     ArrayList<Bandas> Banda = new ArrayList<>();
