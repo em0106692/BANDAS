@@ -4,28 +4,32 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 public class AdicionarBanda extends javax.swing.JFrame {
-
+    
     public AdicionarBanda() {
         initComponents();
     }
-
+    
     public AdicionarBanda(BibliotecaMusicas bibli) {
         initComponents();
         B = bibli;
     }
-
+    
     public AdicionarBanda(BibliotecaMusicas bibli, int i) {
         initComponents();
         BEDITAR = bibli;
         EDIT = true;
         sBandaNome.setText(BEDITAR.getName());
         //sBandaLocal.setText(BEDITAR);
+        
+        BandToEdit = BEDITAR.getBanda(i);
+        sBandaNome.setText(BandToEdit.getBAN_VNOME());
+        sBandaLocal.setText(BandToEdit.getBAN_VLOCAL());
     }
-
+    
     public void Cadastro(BibliotecaMusicas Bibli) {
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -68,6 +72,11 @@ public class AdicionarBanda extends javax.swing.JFrame {
         sBandaNome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sBandaNomeMouseClicked(evt);
+            }
+        });
+        sBandaNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sBandaNomeActionPerformed(evt);
             }
         });
 
@@ -175,21 +184,38 @@ public class AdicionarBanda extends javax.swing.JFrame {
                 sBandaLocal.setText(msgError);
                 error = true;
             }
-
+            
             if (error == false) {
-                Bandas L = new Bandas();
+                Banda L = new Banda();
                 L.setBAN_ID(B.BandaTamanho());
                 L.setBAN_VNOME(sBandaNome.getText());
                 L.setBAN_VLOCAL(sBandaLocal.getText());
-
+                
                 B.AdicionarBanda(L);
-
+                
                 B.ExibeBanda(B.BandaTamanho() - 1);
                 //B.RemoveBanda(B.BandaTamanho());
                 this.dispose();
             }
-        }
+        } else {
+            if ("".equals(sBandaNome.getText())) {
+                sBandaNome.setText(msgError);
+                error = true;
+            }
+            if ("".equals(sBandaLocal.getText())) {
+                sBandaLocal.setText(msgError);
+                error = true;
+            }
+            
+            if (error == false) {
+            BandToEdit.setBAN_VNOME(sBandaNome.getText());
+            BandToEdit.setBAN_VLOCAL(sBandaLocal.getText());
+            
+            BEDITAR.ExibeBanda(BandToEdit.getBAN_ID());
+            this.dispose();
+            }
         
+        }
     }//GEN-LAST:event_bSalvarActionPerformed
 
     private void sBandaNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sBandaNomeMouseClicked
@@ -222,6 +248,10 @@ public class AdicionarBanda extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbAbreImagemActionPerformed
 
+    private void sBandaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBandaNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sBandaNomeActionPerformed
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -243,6 +273,8 @@ public class AdicionarBanda extends javax.swing.JFrame {
     private javax.swing.JTextField sBandaNome;
     // End of variables declaration//GEN-END:variables
 
+    Banda BandToEdit = new Banda();
+    
     boolean EDIT = false;
     BibliotecaMusicas BEDITAR;
     BibliotecaMusicas B;

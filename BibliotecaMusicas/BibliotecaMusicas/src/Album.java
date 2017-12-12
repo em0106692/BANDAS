@@ -1,4 +1,4 @@
-public class Albuns {
+public class Album {
 
     private int ALB_ID;
     private String ALB_VNOME;

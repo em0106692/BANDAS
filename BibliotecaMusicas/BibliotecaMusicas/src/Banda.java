@@ -1,5 +1,5 @@
 
-public class Bandas {
+public class Banda {
 
     private int BAN_ID;
     private String BAN_VNOME;

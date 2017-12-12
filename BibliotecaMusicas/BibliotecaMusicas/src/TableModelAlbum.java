@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class TableModelAlbum extends AbstractTableModel {
 
-    private List<Albuns> dados = new ArrayList<>();
+    private List<Album> dados = new ArrayList<>();
     private String[] colunas = {"Nº", "Nome"};
 
     @Override
@@ -60,7 +60,7 @@ public class TableModelAlbum extends AbstractTableModel {
     }
 
     /*Adiciona os registros*/
-    public void addrow(Albuns c) {
+    public void addrow(Album c) {
         System.out.println("Table: " + c);
         this.dados.add(c);
         this.fireTableDataChanged();

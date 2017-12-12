@@ -17,8 +17,8 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }
 
     public void RemoveBanda(int i) {
-        Banda.remove(Banda.get(i));
-        System.out.println(Banda);
+        Bandas.remove(Bandas.get(i));
+        System.out.println(Bandas);
 
         int sizebanda = BandaTamanho();
 
@@ -30,71 +30,78 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         }
     }
 
-    public void AdicionarBanda(Bandas Ban) {
-        Banda.add(Ban);
+    public void AdicionarBanda(Banda Ban) {
+        Bandas.add(Ban);
     }
 
-    public void AdicionarUsuario(Usuarios Usu) {
-        Usuario.add(Usu);
+    public void AdicionarUsuario(Usuario Usu) {
+        Usuarios.add(Usu);
     }
 
-    public void AdicionarAlbum(Albuns Alb) {
-        Album.add(Alb);
+    public void AdicionarAlbum(Album Alb) {
+        Albuns.add(Alb);
     }
 
-    public void AdicionarMusica(Musicas Mus) {
-        Musica.add(Mus);
+    public void AdicionarMusica(Musica Mus) {
+        Musicas.add(Mus);
     }
 
     public int BandaTamanho() {
-        return Banda.size();
+        return Bandas.size();
     }
 
     public int UsuarioTamanho() {
-        return Usuario.size();
+        return Usuarios.size();
     }
 
     public int AlbumTamanho() {
-        return Album.size();
+        return Albuns.size();
     }
 
     public int MusicaTamanho() {
-        return Musica.size();
+        return Musicas.size();
     }
 
+    public Banda getBanda(int indice){
+        return Bandas.get(indice);
+    }
+    
+    public Usuario getComponentes(int indice){
+        return Usuarios.get(indice);
+    }
+    
     public void ExibeBanda(int i) {
-        sBandaNome.setText(Banda.get(i).getBAN_VNOME());
-        sBandaLocal.setText(Banda.get(i).getBAN_VLOCAL());
+        sBandaNome.setText(Bandas.get(i).getBAN_VNOME());
+        sBandaLocal.setText(Bandas.get(i).getBAN_VLOCAL());
         INDICE = i;
-        ID_BANDA_ATUAL = Banda.get(i).getBAN_ID();
-        System.out.println(Banda);
+        ID_BANDA_ATUAL = Bandas.get(i).getBAN_ID();
+        System.out.println(Bandas);
     }
 
     public void ExibeAlbum(int i) {
-        sBandaAlbum.setText(Album.get(i).getALB_VNOME());
-        System.out.println(Album);
+        sBandaAlbum.setText(Albuns.get(i).getALB_VNOME());
+        System.out.println(Albuns);
 
         INDICEALB = i;
         int TM = MusicaTamanho() - 1;
         for (int j = 0; j < TM; j++) {
-            Musica.get(j).getMUS_ALB_ID();
+            Musicas.get(j).getMUS_ALB_ID();
         }
-
     }
-
+    
     public void ExibeMusica(int i) {
-        Musicas M = (Musica.get(i));
+        Musica M = (Musicas.get(i));
 
         M.getMUS_ID();
 
         tableModel.addrow(M);
         //TrazImagemBanda(Banda.get(i).getBAN_ID());
         //INDICE = i;
-        ID_BANDA_ATUAL = Banda.get(i).getBAN_ID();
+        ID_BANDA_ATUAL = Bandas.get(i).getBAN_ID();
 
-        System.out.println(Banda);
+        System.out.println(Bandas);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -382,13 +389,13 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }//GEN-LAST:event_bBandaPrevActionPerformed
 
     private void bAlbumAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumAdicionarActionPerformed
+        tableModel = new TableModelMusica();
         if (!"".equals(sBandaNome.getText())) {
             AdicionarAlbum AddAlbum = new AdicionarAlbum(this, ID_BANDA_ATUAL);
             AddAlbum.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Cadastre uma banda primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-
         sBandaAlbum.setText("");
     }//GEN-LAST:event_bAlbumAdicionarActionPerformed
 
@@ -514,8 +521,9 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     int INDICEALB = -1;
 
     int indiceRemove = 0;
-    ArrayList<Bandas> Banda = new ArrayList<>();
-    ArrayList<Albuns> Album = new ArrayList<>();
-    ArrayList<Usuarios> Usuario = new ArrayList<>();
-    ArrayList<Musicas> Musica = new ArrayList<>();
+    
+    ArrayList<Banda> Bandas = new ArrayList<>();
+    ArrayList<Album> Albuns = new ArrayList<>();
+    ArrayList<Usuario> Usuarios = new ArrayList<>();
+    ArrayList<Musica> Musicas = new ArrayList<>();
 }

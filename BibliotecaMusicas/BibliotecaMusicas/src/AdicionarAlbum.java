@@ -179,7 +179,7 @@ public class AdicionarAlbum extends javax.swing.JFrame {
             error = true;
         }
         if (error == false) {
-            Albuns AL = new Albuns();
+            Album AL = new Album();
             idAlbum = B.AlbumTamanho();
             AL.setALB_ID(idAlbum);
             AL.setALB_VNOME(sNomeAlbum.getText());
@@ -214,7 +214,7 @@ public class AdicionarAlbum extends javax.swing.JFrame {
             error = true;
         }
         if (error == false) {
-            Musicas M = new Musicas();
+            Musica M = new Musica();
             
             idMusica = B.MusicaTamanho();
             M.setMUS_ID(idMusica);

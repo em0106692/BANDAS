@@ -1,5 +1,5 @@
 
-public class Musicas {
+public class Musica {
 
     private int MUS_ID;
     private String MUS_VNOME;

@@ -2,22 +2,29 @@
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-
 public class AdicionarComponentes extends javax.swing.JFrame {
+
+    TableModelComponentes tableModel = new TableModelComponentes();
 
     public AdicionarComponentes() {
         initComponents();
-
+        tComponentesBanda.setModel(tableModel);
     }
 
     public AdicionarComponentes(BibliotecaMusicas bibli, int ID) {
         initComponents();
         B = bibli;
         ID_BANDA_ATUAL = ID;
-    }
 
-    public void Cadastro(BibliotecaMusicas Bibli) {
+        if (B.Usuarios.size() > 0) {
 
+            for (int i = 0; i < B.UsuarioTamanho(); i++) {
+                Usuario U = new Usuario();
+                U.setUSU_ID(B.getComponentes(i).getUSU_ID());
+                U.setUSU_VNOME(B.getComponentes(i).getUSU_VNOME());
+                tableModel.addrow(U);
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -29,10 +36,10 @@ public class AdicionarComponentes extends javax.swing.JFrame {
         sComponentesNome = new javax.swing.JTextField();
         bSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tListaComponentes = new javax.swing.JTable();
+        tComponentesBanda = new javax.swing.JTable();
         jbAbreImagem = new javax.swing.JButton();
         jspImagemBanda = new javax.swing.JScrollPane();
-        jButton1 = new javax.swing.JButton();
+        bComponentesAdicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -47,22 +54,8 @@ public class AdicionarComponentes extends javax.swing.JFrame {
             }
         });
 
-        tListaComponentes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Nº", "Nome"
-            }
-        ));
-        jScrollPane1.setViewportView(tListaComponentes);
-        if (tListaComponentes.getColumnModel().getColumnCount() > 0) {
-            tListaComponentes.getColumnModel().getColumn(1).setResizable(false);
-        }
+        tComponentesBanda.setModel(tableModel);
+        jScrollPane1.setViewportView(tComponentesBanda);
 
         jbAbreImagem.setText("Escolher Imagem");
         jbAbreImagem.addActionListener(new java.awt.event.ActionListener() {
@@ -71,10 +64,10 @@ public class AdicionarComponentes extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Adicionar componente");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bComponentesAdicionar.setText("Adicionar componente");
+        bComponentesAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bComponentesAdicionarActionPerformed(evt);
             }
         });
 
@@ -83,19 +76,16 @@ public class AdicionarComponentes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(sComponentesNome))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(bSalvar))))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sComponentesNome))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bSalvar))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jbAbreImagem)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -106,7 +96,7 @@ public class AdicionarComponentes extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(bComponentesAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jspImagemBanda, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,9 +118,9 @@ public class AdicionarComponentes extends javax.swing.JFrame {
                     .addComponent(jspImagemBanda, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(bComponentesAdicionar)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bSalvar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -156,26 +146,28 @@ public class AdicionarComponentes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_bSalvarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bComponentesAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComponentesAdicionarActionPerformed
         if ("".equals(sComponentesNome.getText())) {
-                sComponentesNome.setText(msgError);
-                error = true;
-            }
+            sComponentesNome.setText(msgError);
+            error = true;
+        }
 
-            if (error == false) {
-                Usuarios U = new Usuarios();
-                U.setUSU_ID(B.UsuarioTamanho());
-                U.setUSU_VNOME(sComponentesNome.getText());
-                U.setUSU_BAN_ID(ID_BANDA_ATUAL);
+        if (error == false) {
+            Usuario U = new Usuario();
+            U.setUSU_ID(B.UsuarioTamanho());
+            U.setUSU_VNOME(sComponentesNome.getText());
+            U.setUSU_BAN_ID(ID_BANDA_ATUAL);
 
-                B.AdicionarUsuario(U);
-                System.out.println(U);
-                
-                //tListaComponentes
-                sComponentesNome.setText("");
-            }
-    }//GEN-LAST:event_jButton1ActionPerformed
+            B.AdicionarUsuario(U);
 
+            tableModel.addrow(U);
+
+            System.out.println(U);
+
+            //tListaComponentes
+            sComponentesNome.setText("");
+        }
+    }//GEN-LAST:event_bComponentesAdicionarActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -186,23 +178,23 @@ public class AdicionarComponentes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bComponentesAdicionar;
     private javax.swing.JButton bSalvar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAbreImagem;
     private javax.swing.JScrollPane jspImagemBanda;
     private javax.swing.JTextField sComponentesNome;
-    private javax.swing.JTable tListaComponentes;
+    private javax.swing.JTable tComponentesBanda;
     // End of variables declaration//GEN-END:variables
 
     BibliotecaMusicas B;
-    
+
     int ID_BANDA_ATUAL = -1;
     int ID_ALBUM_ATUAL = -1;
     int ID_MUSICA_ATUAL = -1;
-    
+
     boolean error = false;
     String msgError = "Este campo é obrigatório";
 }

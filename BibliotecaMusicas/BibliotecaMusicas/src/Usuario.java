@@ -1,4 +1,4 @@
-public class Usuarios {
+public class Usuario {
 
     private int USU_ID;
     private String USU_VNOME;
