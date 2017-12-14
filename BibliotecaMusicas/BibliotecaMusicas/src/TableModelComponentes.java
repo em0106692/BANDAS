@@ -68,9 +68,16 @@ public class TableModelComponentes extends AbstractTableModel {
     }
 
     /*Remove os registros*/
-    public void removerow(int row) {
+    public void removeRow(int row) {
         this.dados.remove(row);
         this.fireTableRowsDeleted(row, row);
 
     }          
+    
+    public void limpaTabela() {
+		int size = getRowCount();
+		for(int i = 0; i < size; i++) {
+			removeRow(i);
+		}
+	}   
 }

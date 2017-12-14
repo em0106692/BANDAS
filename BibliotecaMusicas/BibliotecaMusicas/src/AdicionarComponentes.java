@@ -1,6 +1,8 @@
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class AdicionarComponentes extends javax.swing.JFrame {
 
@@ -143,6 +145,7 @@ public class AdicionarComponentes extends javax.swing.JFrame {
     }//GEN-LAST:event_jbAbreImagemActionPerformed
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+        tableModel.limpaTabela();
         this.dispose();
     }//GEN-LAST:event_bSalvarActionPerformed
 

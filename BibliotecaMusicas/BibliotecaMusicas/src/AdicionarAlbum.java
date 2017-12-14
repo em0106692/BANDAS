@@ -10,13 +10,32 @@ public class AdicionarAlbum extends javax.swing.JFrame {
         jtMusica.setModel(tableModel);
     }
 
-    public AdicionarAlbum(BibliotecaMusicas bibli, int ID) {
+    public AdicionarAlbum(BibliotecaMusicas bibli) {
         initComponents();
         B = bibli;
-        ID_BANDA_ATUAL = ID;
     }
 
-    public void Cadastro(BibliotecaMusicas Bibli) {
+    public AdicionarAlbum(BibliotecaMusicas bibli, int ID) {
+        initComponents();
+        AEDITAR = bibli;
+        EDIT = true;
+
+        sNomeAlbum.setText(AEDITAR.getName());
+        //sBandaLocal.setText(BEDITAR);
+
+    }
+
+    public void ExibeMusica() {
+
+//        for (int i = 0; i < 10; i++) {
+//            Musica M = (Musicas.get(i));
+//            if(M.setMUS_ALB_ID(int ID_ALBUM_ATUAL).size() > 0){
+//                
+//            }
+//            M.getMUS_ID();
+//            M.getMUS_VNOME();
+//            tableModel.addrow(M);
+//        }
 
     }
 
@@ -187,7 +206,7 @@ public class AdicionarAlbum extends javax.swing.JFrame {
             B.AdicionarAlbum(AL);
 
             B.ExibeAlbum(idAlbum);
-            
+
             this.dispose();
         }
     }//GEN-LAST:event_jbAlbumSalvarActionPerformed
@@ -215,7 +234,7 @@ public class AdicionarAlbum extends javax.swing.JFrame {
         }
         if (error == false) {
             Musica M = new Musica();
-            
+
             idMusica = B.MusicaTamanho();
             M.setMUS_ID(idMusica);
             M.setMUS_VNOME(sMusicaNome.getText());
@@ -255,6 +274,8 @@ public class AdicionarAlbum extends javax.swing.JFrame {
     int idAlbum = 0;
     int idMusica = 0;
 
+    boolean EDIT = false;
+    BibliotecaMusicas AEDITAR;
     BibliotecaMusicas B;
 
     int ID_BANDA_ATUAL = -1;
@@ -263,4 +284,9 @@ public class AdicionarAlbum extends javax.swing.JFrame {
 
     boolean error = false;
     String msgError = "Este campo é obrigatório";
+
+    ArrayList<Banda> Bandas = new ArrayList<>();
+    ArrayList<Album> Albuns = new ArrayList<>();
+    ArrayList<Usuario> Usuarios = new ArrayList<>();
+    ArrayList<Musica> Musicas = new ArrayList<>();
 }

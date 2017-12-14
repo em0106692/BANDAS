@@ -218,6 +218,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAlbumEditarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bBandaEditar">
           <Properties>
@@ -266,6 +269,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAlbumNextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bMusicaExcluir">
           <Properties>
@@ -314,6 +320,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAlbumExcluirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bBandaExluir">
           <Properties>

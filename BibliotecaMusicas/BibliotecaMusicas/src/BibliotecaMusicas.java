@@ -62,14 +62,14 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         return Musicas.size();
     }
 
-    public Banda getBanda(int indice){
+    public Banda getBanda(int indice) {
         return Bandas.get(indice);
     }
-    
-    public Usuario getComponentes(int indice){
+
+    public Usuario getComponentes(int indice) {
         return Usuarios.get(indice);
     }
-    
+
     public void ExibeBanda(int i) {
         sBandaNome.setText(Bandas.get(i).getBAN_VNOME());
         sBandaLocal.setText(Bandas.get(i).getBAN_VLOCAL());
@@ -88,7 +88,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
             Musicas.get(j).getMUS_ALB_ID();
         }
     }
-    
+
     public void ExibeMusica(int i) {
         Musica M = (Musicas.get(i));
 
@@ -96,12 +96,12 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
 
         tableModel.addrow(M);
         //TrazImagemBanda(Banda.get(i).getBAN_ID());
-        //INDICE = i;
+        INDICEMUS = i;
         ID_BANDA_ATUAL = Bandas.get(i).getBAN_ID();
 
         System.out.println(Bandas);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -144,6 +144,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         jLabel2.setText("Banda:");
 
         bAlbumEditar.setText("Editar");
+        bAlbumEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAlbumEditarActionPerformed(evt);
+            }
+        });
 
         bBandaEditar.setText("Editar");
         bBandaEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +170,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         });
 
         bAlbumNext.setText(">");
+        bAlbumNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAlbumNextActionPerformed(evt);
+            }
+        });
 
         bMusicaExcluir.setText("Excluir");
 
@@ -198,6 +208,11 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         });
 
         bAlbumExcluir.setText("Excluir");
+        bAlbumExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAlbumExcluirActionPerformed(evt);
+            }
+        });
 
         bBandaExluir.setText("Excluir");
         bBandaExluir.addActionListener(new java.awt.event.ActionListener() {
@@ -233,25 +248,26 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
                         .addComponent(bMusicaExcluir))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 55, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lBandaImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(sBandaLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(lBandaImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bBandaComponentes))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sBandaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bBandaEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bBandaExluir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(sBandaLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bBandaComponentes))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sBandaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bBandaEditar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bBandaExluir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -378,14 +394,19 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
 //            ExibeBanda(INDICE);
 //        }
 
-        int newIndice = INDICE - 1;
-        if (newIndice >= 0) {
-            ExibeBanda(newIndice);
+        if (INDICE - 1 >= 0) {
+            ExibeBanda(INDICE - 1);
         }
 
-        if (newIndice - 1 < 0) {
+        if (INDICEALB - 1 >= 0) {
+            ExibeBanda(INDICEALB - 1);
+        }
+
+        if (INDICE - 2 < 0) {
             bBandaPrev.disable();
         }
+
+
     }//GEN-LAST:event_bBandaPrevActionPerformed
 
     private void bAlbumAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumAdicionarActionPerformed
@@ -436,31 +457,41 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }//GEN-LAST:event_bMusicaNovaActionPerformed
 
     private void bBandaAvancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaAvancoActionPerformed
-//        if (INDICE < BandaTamanho() - 1) {
-//            INDICE++;
-//            ExibeBanda(INDICE);
-//        }
-
-        int newIndice = INDICE + 1;
-        if (newIndice <= BandaTamanho() - 1) {
-            ExibeBanda(newIndice);
+        if (INDICE + 1 <= BandaTamanho() - 1) {
+            ExibeBanda(INDICE + 1);
         }
 
-        if (newIndice + 1 > BandaTamanho() - 1) {
+        if (INDICEALB - 1 >= 0) {
+            ExibeBanda(INDICEALB - 1);
+        }
+
+        if (INDICE + 2 > BandaTamanho() - 1) {
             bBandaAvanco.disable();
         }
     }//GEN-LAST:event_bBandaAvancoActionPerformed
 
     private void bAlbumPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumPrevActionPerformed
-//        int newIndice = INDICEALB - 1;
-//        if (INDICEALB <= BandaTamanho()) {
-//            ExibeBanda(newIndice);
-//        }
-//
-//        if (newIndice + 1 == BandaTamanho()) {
-//            bBandaAvanco.hide();
-//        }
+        if (INDICEALB - 1 >= 0) {
+            ExibeBanda(INDICEALB - 1);
+        }
     }//GEN-LAST:event_bAlbumPrevActionPerformed
+
+    private void bAlbumNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumNextActionPerformed
+        if (INDICEALB + 1 >= 0) {
+            ExibeBanda(INDICEALB + 1);
+        }
+    }//GEN-LAST:event_bAlbumNextActionPerformed
+
+    private void bAlbumEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumEditarActionPerformed
+        AdicionarAlbum AddA = new AdicionarAlbum(this, INDICEALB);
+        AddA.setVisible(true);
+    }//GEN-LAST:event_bAlbumEditarActionPerformed
+
+    private void bAlbumExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumExcluirActionPerformed
+        if (INDICEALB != -1) {
+            RemoveBanda(INDICEALB);
+        }
+    }//GEN-LAST:event_bAlbumExcluirActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -519,9 +550,10 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
 
     int INDICE = -1;
     int INDICEALB = -1;
+    int INDICEMUS = -1;
 
     int indiceRemove = 0;
-    
+
     ArrayList<Banda> Bandas = new ArrayList<>();
     ArrayList<Album> Albuns = new ArrayList<>();
     ArrayList<Usuario> Usuarios = new ArrayList<>();
