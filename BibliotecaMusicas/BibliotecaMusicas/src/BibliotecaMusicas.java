@@ -16,6 +16,14 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
 //this.setExtendedState(MAXIMIZED_BOTH);
     }
 
+    /**
+     * Remove a banda que está sendo apresentada no display
+     *
+     * @param i Recebe o valor do Array que representa a banda que está sendo
+     * apresentada no display
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public void RemoveBanda(int i) {
         Bandas.remove(Bandas.get(i));
         System.out.println(Bandas);
@@ -30,38 +38,119 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         }
     }
 
+    public void RemoveAlbum(int i) {
+        Albuns.remove(Albuns.get(i));
+
+        int sizealbum = AlbumTamanho();
+
+        if (sizealbum <= 0) {
+            sBandaAlbum.setText("");
+        } else {
+            ExibeAlbum(0);
+        }
+    }
+
+    /**
+     * Adiciona a banda recebida na lista de bandas
+     *
+     * @param Ban Recebe a classe banda com os dados adicionados na tela de
+     * cadastro de bandas
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public void AdicionarBanda(Banda Ban) {
         Bandas.add(Ban);
     }
 
+    /**
+     * Adiciona o usuário recebido na lista de usuários
+     *
+     * @param Usu Recebe a classe usuário com os dados adicionados na tela de
+     * cadastro de componentes
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public void AdicionarUsuario(Usuario Usu) {
         Usuarios.add(Usu);
     }
 
+    /**
+     * Adiciona o Álbum recebido na lista de Álbuns
+     *
+     * @param Alb Recebe a classe álbum com os dados adicionados na tela de
+     * cadastro de álbuns e músicas
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public void AdicionarAlbum(Album Alb) {
         Albuns.add(Alb);
     }
 
+    /**
+     * Adiciona a Musica recebida na lista de Musicas
+     *
+     * @param Mus Recebe a classe música com os dados adicionados na tela de
+     * cadastro de álbuns e músicas
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public void AdicionarMusica(Musica Mus) {
         Musicas.add(Mus);
     }
 
+    /**
+     * Retorna a quantidade de bandas cadastradas
+     *
+     * @return Retorna um valor inteiro referente ao tamanho do array de bandas
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public int BandaTamanho() {
         return Bandas.size();
     }
 
+    /**
+     * Retorna a quantidade de Usuarios cadastrados
+     *
+     * @return Retorna um valor inteiro referente ao tamanho do array de
+     * usuários
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public int UsuarioTamanho() {
         return Usuarios.size();
     }
 
+    /**
+     * Retorna a quantidade de Álbuns cadastrados
+     *
+     * @return Retorna um valor inteiro referente ao tamanho do array de álbuns
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public int AlbumTamanho() {
         return Albuns.size();
     }
 
+    /**
+     * Retorna a quantidade de Música cadastrados
+     *
+     * @return Retorna um valor inteiro referente ao tamanho do array de Músicas
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public int MusicaTamanho() {
         return Musicas.size();
     }
 
+    /**
+     * Retorna o índice da banda que está sendo exibida no display
+     *
+     * @param indice Recebe o índice da banda que está no display
+     * @return Retorna a banda na posição que foi passada no parâmetro
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public Banda getBanda(int indice) {
         return Bandas.get(indice);
     }
@@ -70,6 +159,28 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         return Usuarios.get(indice);
     }
 
+    /**
+     * Retorna o índice do Álbum que está sendo exibido no display
+     *
+     * @param indice Recebe o índice do Álbum que está no display
+     * @return Retorna o Álbum na posição que foi passada no parâmetro
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
+    public Album getAlbum(int indice) {
+        return Albuns.get(indice);
+    }
+
+//    public Musica getMusica(int indice) {
+//        return Musicas.get(indice);
+//    }
+    /**
+     * Recebe o índice da banda que deseja exibir no display
+     *
+     * @param i Recebe o índice da banda que vai ser exibida
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public void ExibeBanda(int i) {
         sBandaNome.setText(Bandas.get(i).getBAN_VNOME());
         sBandaLocal.setText(Bandas.get(i).getBAN_VLOCAL());
@@ -78,11 +189,18 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
         System.out.println(Bandas);
     }
 
+    /**
+     * Recebe o índice do Álbum que deseja exibir no display
+     *
+     * @param i Recebe o índice do álbum que vai ser exibido
+     * @author Eduardo da Silva
+     * @author Cristian Weissmantel
+     */
     public void ExibeAlbum(int i) {
         sBandaAlbum.setText(Albuns.get(i).getALB_VNOME());
-        System.out.println(Albuns);
-
         INDICEALB = i;
+
+        ID_ALBUM_ATUAL = Albuns.get(i).getALB_ID();
         int TM = MusicaTamanho() - 1;
         for (int j = 0; j < TM; j++) {
             Musicas.get(j).getMUS_ALB_ID();
@@ -398,10 +516,6 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
             ExibeBanda(INDICE - 1);
         }
 
-        if (INDICEALB - 1 >= 0) {
-            ExibeBanda(INDICEALB - 1);
-        }
-
         if (INDICE - 2 < 0) {
             bBandaPrev.disable();
         }
@@ -410,9 +524,9 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }//GEN-LAST:event_bBandaPrevActionPerformed
 
     private void bAlbumAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumAdicionarActionPerformed
-        tableModel = new TableModelMusica();
+        //tableModel = new TableModelMusica();
         if (!"".equals(sBandaNome.getText())) {
-            AdicionarAlbum AddAlbum = new AdicionarAlbum(this, ID_BANDA_ATUAL);
+            AdicionarAlbum AddAlbum = new AdicionarAlbum(this);
             AddAlbum.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Cadastre uma banda primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -431,8 +545,10 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }//GEN-LAST:event_bBandaComponentesActionPerformed
 
     private void bBandaExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaExluirActionPerformed
-        if (INDICE != -1) {
-            RemoveBanda(INDICE);
+        if (!"".equals(sBandaNome.getText())) {
+            if (INDICE != -1) {
+                RemoveBanda(INDICE);
+            }
         }
     }//GEN-LAST:event_bBandaExluirActionPerformed
 
@@ -441,8 +557,10 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
     }//GEN-LAST:event_sBandaAlbumActionPerformed
 
     private void bBandaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandaEditarActionPerformed
-        AdicionarBanda AddB = new AdicionarBanda(this, INDICE);
-        AddB.setVisible(true);
+        if (!"".equals(sBandaNome.getText())) {
+            AdicionarBanda AddB = new AdicionarBanda(this, INDICE);
+            AddB.setVisible(true);
+        }
     }//GEN-LAST:event_bBandaEditarActionPerformed
 
     private void bMusicaNovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMusicaNovaActionPerformed
@@ -451,7 +569,7 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
             AddAlbum.setVisible(true);
         } else if ("".equals(sBandaNome.getText())) {
             JOptionPane.showMessageDialog(null, "Insira uma Banda primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else if (!"".equals(sBandaAlbum.getText())) {
+        } else if ("".equals(sBandaAlbum.getText())) {
             JOptionPane.showMessageDialog(null, "Insira uma Álbum primeiro!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bMusicaNovaActionPerformed
@@ -461,36 +579,44 @@ public class BibliotecaMusicas extends javax.swing.JFrame {
             ExibeBanda(INDICE + 1);
         }
 
-        if (INDICEALB - 1 >= 0) {
-            ExibeBanda(INDICEALB - 1);
-        }
-
         if (INDICE + 2 > BandaTamanho() - 1) {
             bBandaAvanco.disable();
         }
     }//GEN-LAST:event_bBandaAvancoActionPerformed
 
     private void bAlbumPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumPrevActionPerformed
+        System.out.println(INDICEALB);
         if (INDICEALB - 1 >= 0) {
-            ExibeBanda(INDICEALB - 1);
+            ExibeAlbum(INDICEALB - 1);
+        }
+        if (INDICEALB - 2 > BandaTamanho() - 1) {
+            bAlbumPrev.hide();
         }
     }//GEN-LAST:event_bAlbumPrevActionPerformed
 
     private void bAlbumNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumNextActionPerformed
         if (INDICEALB + 1 >= 0) {
-            ExibeBanda(INDICEALB + 1);
+            ExibeAlbum(INDICEALB + 1);
+        }
+        if (INDICEALB + 2 > BandaTamanho() - 1) {
+            bAlbumNext.disable();
         }
     }//GEN-LAST:event_bAlbumNextActionPerformed
 
     private void bAlbumEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumEditarActionPerformed
-        AdicionarAlbum AddA = new AdicionarAlbum(this, INDICEALB);
-        AddA.setVisible(true);
+        if (!"".equals(sBandaAlbum.getText())) {
+            AdicionarAlbum AddA = new AdicionarAlbum(this, INDICEALB);
+            AddA.setVisible(true);
+        }
     }//GEN-LAST:event_bAlbumEditarActionPerformed
 
     private void bAlbumExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlbumExcluirActionPerformed
-        if (INDICEALB != -1) {
-            RemoveBanda(INDICEALB);
+        if (!"".equals(sBandaAlbum.getText())) {
+            if (INDICEALB != -1) {
+                RemoveAlbum(INDICEALB);
+            }
         }
+
     }//GEN-LAST:event_bAlbumExcluirActionPerformed
 
     public static void main(String args[]) {

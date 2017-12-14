@@ -20,7 +20,8 @@ public class AdicionarAlbum extends javax.swing.JFrame {
         AEDITAR = bibli;
         EDIT = true;
 
-        sNomeAlbum.setText(AEDITAR.getName());
+        AlbumToEdit = AEDITAR.getAlbum(ID);
+        sNomeAlbum.setText(AlbumToEdit.getALB_VNOME());
         //sBandaLocal.setText(BEDITAR);
 
     }
@@ -36,7 +37,6 @@ public class AdicionarAlbum extends javax.swing.JFrame {
 //            M.getMUS_VNOME();
 //            tableModel.addrow(M);
 //        }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -48,21 +48,26 @@ public class AdicionarAlbum extends javax.swing.JFrame {
         sNomeAlbum = new javax.swing.JTextField();
         jbAlbumSalvar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtMusica = new javax.swing.JTable();
         sMusicaNome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         bMusicaAdicionar = new javax.swing.JButton();
         bMusicaEditar = new javax.swing.JButton();
         bMusicaExcluir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtMusica = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Adicionar Álbum");
 
-        jLabel5.setText("Nome");
+        jLabel5.setText("Álbum");
+
+        sNomeAlbum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sNomeAlbumMouseClicked(evt);
+            }
+        });
 
         jbAlbumSalvar.setText("Salvar");
         jbAlbumSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +85,27 @@ public class AdicionarAlbum extends javax.swing.JFrame {
 
         jLabel2.setText("Adicionar Musica");
 
+        bMusicaAdicionar.setText("Adicionar");
+        bMusicaAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMusicaAdicionarActionPerformed(evt);
+            }
+        });
+
+        bMusicaEditar.setText("Editar");
+        bMusicaEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMusicaEditarActionPerformed(evt);
+            }
+        });
+
+        bMusicaExcluir.setText("Excluir");
+        bMusicaExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMusicaExcluirActionPerformed(evt);
+            }
+        });
+
         jtMusica.setModel(tableModel);
         jtMusica.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -93,81 +119,47 @@ public class AdicionarAlbum extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtMusica);
 
-        jLabel3.setText("Nome");
-
-        bMusicaAdicionar.setText("Adicionar");
-        bMusicaAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bMusicaAdicionarActionPerformed(evt);
-            }
-        });
-
-        bMusicaEditar.setText("Editar");
-
-        bMusicaExcluir.setText("Excluir");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sMusicaNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bMusicaAdicionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bMusicaEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bMusicaExcluir)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(196, 196, 196))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sMusicaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(bMusicaAdicionar)
-                    .addComponent(bMusicaEditar)
-                    .addComponent(bMusicaExcluir))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel3.setText("Música");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(210, 210, 210))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sNomeAlbum))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sNomeAlbum))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jbCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbAlbumSalvar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sMusicaNome))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbAlbumSalvar))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(210, 210, 210))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(bMusicaAdicionar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bMusicaEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bMusicaExcluir)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,11 +170,20 @@ public class AdicionarAlbum extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(sNomeAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 39, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(sMusicaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bMusicaAdicionar)
+                    .addComponent(bMusicaEditar)
+                    .addComponent(bMusicaExcluir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAlbumSalvar)
                     .addComponent(jbCancelar))
@@ -193,22 +194,43 @@ public class AdicionarAlbum extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAlbumSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlbumSalvarActionPerformed
-        if ("".equals(sNomeAlbum.getText())) {
-            sNomeAlbum.setText(msgError);
-            error = true;
-        }
-        if (error == false) {
-            Album AL = new Album();
-            idAlbum = B.AlbumTamanho();
-            AL.setALB_ID(idAlbum);
-            AL.setALB_VNOME(sNomeAlbum.getText());
-            AL.setALB_BAN_ID(ID_BANDA_ATUAL);
-            B.AdicionarAlbum(AL);
+        if (EDIT != true) {
+            if ("".equals(sNomeAlbum.getText())) {
+                sNomeAlbum.setText(msgError);
+                error = true;
+            } else {
+                error = false;
+            }
+            if (error == false) {
+                Album AL = new Album();
+                idAlbum = B.AlbumTamanho();
+                AL.setALB_ID(idAlbum);
+                AL.setALB_VNOME(sNomeAlbum.getText());
+                AL.setALB_BAN_ID(ID_BANDA_ATUAL);
+                B.AdicionarAlbum(AL);
 
-            B.ExibeAlbum(idAlbum);
+                B.ExibeAlbum(B.AlbumTamanho() - 1);
 
-            this.dispose();
+                this.dispose();
+            }
+        } else {
+            if ("".equals(sNomeAlbum.getText())) {
+                sNomeAlbum.setText(msgError);
+                error = true;
+            } else {
+                error = false;
+            }
+
+            if (error == false) {
+                AlbumToEdit.setALB_VNOME(sNomeAlbum.getText());
+
+                AEDITAR.ExibeAlbum(AlbumToEdit.getALB_ID());
+
+                this.dispose();
+            }
+
         }
+
     }//GEN-LAST:event_jbAlbumSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
@@ -231,7 +253,10 @@ public class AdicionarAlbum extends javax.swing.JFrame {
         if ("".equals(sMusicaNome.getText())) {
             sMusicaNome.setText(msgError);
             error = true;
+        } else {
+            error = false;
         }
+        
         if (error == false) {
             Musica M = new Musica();
 
@@ -243,8 +268,26 @@ public class AdicionarAlbum extends javax.swing.JFrame {
             tableModel.addrow(M);
 
             B.ExibeMusica(idMusica);
+            
+            sMusicaNome.setText("");
         }
     }//GEN-LAST:event_bMusicaAdicionarActionPerformed
+
+    private void sNomeAlbumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sNomeAlbumMouseClicked
+        if (!"".equals(sNomeAlbum.getText())) {
+            sNomeAlbum.setText("");
+        }
+    }//GEN-LAST:event_sNomeAlbumMouseClicked
+
+    private void bMusicaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMusicaEditarActionPerformed
+        //jtMusica.getValueAt(jtMusica.getSelectedRow(), 1);
+        //System.out.println(jtMusica.getSelectedRow());
+        tableModel.setValueAt(sMusicaNome.getText(), jtMusica.getSelectedRow(), 1); 
+    }//GEN-LAST:event_bMusicaEditarActionPerformed
+
+    private void bMusicaExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMusicaExcluirActionPerformed
+        tableModel.removerow(jtMusica.getSelectedRow()); 
+    }//GEN-LAST:event_bMusicaExcluirActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -262,7 +305,6 @@ public class AdicionarAlbum extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAlbumSalvar;
     private javax.swing.JButton jbCancelar;
@@ -284,6 +326,8 @@ public class AdicionarAlbum extends javax.swing.JFrame {
 
     boolean error = false;
     String msgError = "Este campo é obrigatório";
+
+    Album AlbumToEdit = new Album();
 
     ArrayList<Banda> Bandas = new ArrayList<>();
     ArrayList<Album> Albuns = new ArrayList<>();
